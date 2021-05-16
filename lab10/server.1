@@ -1,0 +1,135 @@
+Script started on 2021-03-25 02:21:59-0400
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ gdb bufserver
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+bufserver: No such file or directory.
+(gdb) break set_up_server_socket
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) set_up_server_socket[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kbreak set_up_server_socket
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) y
+Breakpoint 1 (set_up_server_socket) pending.
+(gdb) next
+The program is not being run.
+(gdb) run
+Starting program:  
+No executable file specified.
+Use the "file" or "exec-file" command.
+(gdb) next
+The program is not being run.
+(gdb) bufe[Kserver
+Undefined command: "bufserver".  Try "help".
+(gdb) break main
+No symbol table is loaded.  Use the "file" command.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) file
+No executable file now.
+No symbol file now.
+(gdb) display
+(gdb) quit
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ ls
+bufserver.c  client.1  Makefile  randclient.c  readserver.c  server.1  socket.c  socket.h
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ make
+gcc -DPORT=30001 -g -Wall -std=gnu99 -c readserver.c
+gcc -DPORT=30001 -g -Wall -std=gnu99 -c socket.c
+gcc -DPORT=30001 -g -Wall -std=gnu99 -o readserver readserver.o socket.o
+gcc -DPORT=30001 -g -Wall -std=gnu99 -c randclient.c
+gcc -DPORT=30001 -g -Wall -std=gnu99 -o randclient randclient.o socket.o
+gcc -DPORT=30001 -g -Wall -std=gnu99 -c bufserver.c
+gcc -DPORT=30001 -g -Wall -std=gnu99 -o bufserver bufserver.o socket.o
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ gdb bufserver
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from bufserver...done.
+(gdb) break set_up_server_socket
+Breakpoint 1 at 0xf71: file socket.c, line 35.
+(gdb) next
+The program is not being run.
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, set_up_server_socket (self=0x555555757260, num_queue=5) at socket.c:35
+35      int set_up_server_socket(struct sockaddr_in *self, int num_queue) {
+(gdb) next
+36          int soc = socket(PF_INET, SOCK_STREAM, 0);
+(gdb) next
+37          if (soc < 0) {
+(gdb) next
+44          int on = 1;
+(gdb) next
+45          int status = setsockopt(soc, SOL_SOCKET, SO_REUSEADDR,
+(gdb) next
+47          if (status < 0) {
+(gdb) next
+53          if (bind(soc, (struct sockaddr *)self, sizeof(*self)) < 0) {
+(gdb) next
+55              perror("bind");
+(gdb) next
+bind: Address already in use
+56              exit(1);
+(gdb) next
+[Inferior 1 (process 37343) exited with code 01]
+(gdb) next
+The program is not being run.
+(gdb) n[Krun
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, set_up_server_socket (self=0x555555757260, num_queue=5) at socket.c:35
+35      int set_up_server_socket(struct sockaddr_in *self, int num_queue) {
+(gdb) next
+36          int soc = socket(PF_INET, SOCK_STREAM, 0);
+(gdb) next
+37          if (soc < 0) {
+(gdb) next
+44          int on = 1;
+(gdb) next
+45          int status = setsockopt(soc, SOL_SOCKET, SO_REUSEADDR,
+(gdb) next
+47          if (status < 0) {
+(gdb) next
+53          if (bind(soc, (struct sockaddr *)self, sizeof(*self)) < 0) {
+(gdb) next
+55              perror("bind");
+(gdb) break accept_connection
+Breakpoint 2 at 0x555555555078: file socket.c, line 74.
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) n
+Program not restarted.
+(gdb) next
+bind: Address already in use
+56              exit(1);
+(gdb) next
+[Inferior 1 (process 42587) exited with code 01]
+(gdb) exit
+Undefined command: "exit".  Try "help".
+(gdb) quit
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ exitrt[K[K
+exit
+
+Script done on 2021-03-25 02:39:09-0400

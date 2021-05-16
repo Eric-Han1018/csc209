@@ -1,0 +1,205 @@
+Script started on 2021-03-25 02:46:59-0400
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ gdb bufserver
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from bufserver...done.
+(gdb) break randclient
+Function "randclient" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) cdb[K[K[Kquit
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ gdb randclient
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from randclient...done.
+(gdb) bre[K[K[Krun 127.0.0.1
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/randclient 127.0.0.1
+[Inferior 1 (process 55959) exited normally]
+(gdb) break main
+Breakpoint 1 at 0x555555554c69: file randclient.c, line 24.
+(gdb) run 127.0.0.1
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/randclient 127.0.0.1
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffea48) at randclient.c:24
+24          if (argc != 2) {
+(gdb) next
+29          int soc = connect_to_server(PORT, argv[1]);
+(gdb) next
+31          write_random_pieces(soc, MESSAGE, TIMES);
+(gdb) next
+33          close(soc);
+(gdb) 
+34          return 0;
+(gdb) 
+35      }
+(gdb) run
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/randclient 127.0.0.1
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffea48) at randclient.c:24
+24          if (argc != 2) {
+(gdb) run 127.9[K0.90[K[K0.1
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/randclient 127.0.0.1
+
+Breakpoint 1, main (argc=2, argv=0x7fffffffea48) at randclient.c:24
+24          if (argc != 2) {
+(gdb) 
+(gdb) n
+29          int soc = connect_to_server(PORT, argv[1]);
+(gdb) n
+31          write_random_pieces(soc, MESSAGE, TIMES);
+(gdb) s
+write_random_pieces (soc=3, message=0x5555555551e0 "A stitch in time\r\n", times=5) at randclient.c:42
+42      void write_random_pieces(int soc, const char *message, int times) {
+(gdb) n
+44          int message_len = strlen(message);
+(gdb) n
+45          int total_bytes = times * message_len;
+(gdb) n
+46          int current_byte = 0;
+(gdb) 
+48          while (current_byte < total_bytes) {
+(gdb) 
+49              int piece_size = rand() % (MAXCHARS - MINCHARS + 1) + MINCHARS;
+(gdb) 
+50              int bytes_left = total_bytes - current_byte;
+(gdb) n
+51              if (piece_size > bytes_left) {
+(gdb) n
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) n
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+58              write(soc, piece, piece_size);
+(gdb) n
+59              current_byte += piece_size;
+(gdb) n
+48          while (current_byte < total_bytes) {
+(gdb) n
+49              int piece_size = rand() % (MAXCHARS - MINCHARS + 1) + MINCHARS;
+(gdb) 
+50              int bytes_left = total_bytes - current_byte;
+(gdb) n
+51              if (piece_size > bytes_left) {
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+58              write(soc, piece, piece_size);
+(gdb) 
+59              current_byte += piece_size;
+(gdb) print piece_size
+$1 = 4
+(gdb) 
+$2 = 4
+(gdb) 
+$3 = 4
+(gdb) 
+$4 = 4
+(gdb) n
+48          while (current_byte < total_bytes) {
+(gdb) 
+49              int piece_size = rand() % (MAXCHARS - MINCHARS + 1) + MINCHARS;
+(gdb) 
+50              int bytes_left = total_bytes - current_byte;
+(gdb) 
+51              if (piece_size > bytes_left) {
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+56                  piece[i] = message[(current_byte + i) % message_len];
+(gdb) 
+55              for (int i = 0; i < piece_size; i++) {
+(gdb) 
+58              write(soc, piece, piece_size);
+(gdb) 
+59              current_byte += piece_size;
+(gdb) quit
+A debugging session is active.
+
+        Inferior 1 [process 61624] will be killed.
+
+Quit anyway? (y or n) y
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ exit
+exit
+
+Script done on 2021-03-25 03:05:14-0400

@@ -1,0 +1,108 @@
+Script started on 2021-02-23 07:17:28-0500
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab6wolf:~/handeche/lab6$ gdp ove[K[K[K[K[Kb overflow
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from overflow...done.
+(gdb) list
+1       #include <stdio.h>
+2       
+3       #define SIZE 4
+4       #define OVERFLOW 5
+5       
+6       int main() {
+7           int index = 0;
+8           int i;
+9           int before[SIZE] = {10, 10, 10, 10};
+10          int a[SIZE] = {0, 0, 0, 0};
+(gdb) list[134[K]
+Function "[13]" not defined.
+(gdb) break[13]
+Function "[13]" not defined.
+Make breakpoint pending on future shared library load? (y or [n]) n
+(gdb) break 13
+Breakpoint 1 at 0x7ac: file overflow.c, line 13.
+(gdb) break 10
+Breakpoint 2 at 0x774: file overflow.c, line 10.
+(gdb) break 14
+Breakpoint 3 at 0x7b8: file overflow.c, line 14.
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab6/overflow 
+
+Breakpoint 2, main () at overflow.c:10
+10          int a[SIZE] = {0, 0, 0, 0};
+(gdb) rue[K[K[Kcontinue
+Continuing.
+
+Breakpoint 1, main () at overflow.c:13
+13          printf("Address of the variables:\n");
+(gdb) continue
+Continuing.
+Address of the variables:
+
+Breakpoint 3, main () at overflow.c:14
+14          for (index = 0; index < SIZE; index++) {
+(gdb) after[0][K[K[K[K[K[K[K[Kdisplay y after[0]
+No symbol "y" in current context.
+(gdb) displaay[K[Ky after[0]
+1: after[0] = 10
+(gdb) next
+15              printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+1: after[0] = 10
+(gdb) next
+7fffffffe950 -> &after[0]
+14          for (index = 0; index < SIZE; index++) {
+1: after[0] = 10
+(gdb) next
+15              printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+1: after[0] = 10
+(gdb) 
+7fffffffe954 -> &after[1]
+14          for (index = 0; index < SIZE; index++) {
+1: after[0] = 10
+(gdb) break25[K[K 25
+Breakpoint 4 at 0x5555555548bd: file overflow.c, line 25.
+(gdb) ru[K[Knext
+15              printf("%lx -> &after[%d]\n", (unsigned long) &after[index], index);
+1: after[0] = 10
+(gdb) continue
+Continuing.
+7fffffffe958 -> &after[2]
+7fffffffe95c -> &after[3]
+7fffffffe940 -> &a[0]
+7fffffffe944 -> &a[1]
+7fffffffe948 -> &a[2]
+7fffffffe94c -> &a[3]
+7fffffffe930 -> &before[0]
+7fffffffe934 -> &before[1]
+7fffffffe938 -> &before[2]
+7fffffffe93c -> &before[3]
+7fffffffe92c -> &i
+7fffffffe928 -> &index
+
+Breakpoint 4, main () at overflow.c:25
+25          printf("\n");
+1: after[0] = 10
+(gdb) print &(after[0])[1P])[1P])[1P])[1P])[1P])[1P])[1P])a])[])4])
+$1 = (int *) 0x7fffffffe950
+(gdb) gdp[K[K[Kquit
+A debugging session is active.
+
+        Inferior 1 [process 58594] will be killed.
+
+Quit anyway? (y or n) y
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab6wolf:~/handeche/lab6$ exit
+exit
+
+Script done on 2021-02-23 07:25:43-0500

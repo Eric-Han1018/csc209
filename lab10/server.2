@@ -1,0 +1,145 @@
+Script started on 2021-03-25 02:47:05-0400
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ gdb bufserver
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from bufserver...done.
+(gdb) break main
+Breakpoint 1 at 0xd32: file bufserver.c, line 18.
+(gdb) next
+The program is not being run.
+(gdb) rum[Kn
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) next
+21          setbuf(stdout, NULL);
+(gdb) next
+23          struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) next
+24          int listenfd = set_up_server_socket(self, 5);
+(gdb) next
+bind: Address already in use
+[Inferior 1 (process 56589) exited with code 01]
+(gdb) 
+The program is not being run.
+(gdb) r[Kbreak main
+Note: breakpoint 1 also set at pc 0x555555554d32.
+Breakpoint 2 at 0x555555554d32: file bufserver.c, line 18.
+(gdb) n
+The program is not being run.
+(gdb) rum[Kn
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) n
+21          setbuf(stdout, NULL);
+(gdb) 
+23          struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) 
+24          int listenfd = set_up_server_socket(self, 5);
+(gdb) 
+bind: Address already in use
+[Inferior 1 (process 59969) exited with code 01]
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) n
+21          setbuf(stdout, NULL);
+(gdb) 
+23          struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) 
+24          int listenfd = set_up_server_socket(self, 5);
+(gdb) 
+bind: Address already in use
+[Inferior 1 (process 61682) exited with code 01]
+(gdb) continue
+The program is not being run.
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) n
+21          setbuf(stdout, NULL);
+(gdb) 
+23          struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) 
+24          int listenfd = set_up_server_socket(self, 5);
+(gdb) 
+bind: Address already in use
+[Inferior 1 (process 2980) exited with code 01]
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) breakak 28
+Undefined command: "breakak".  Try "help".
+(gdb) break 29[K8
+Breakpoint 3 at 0x555555554d84: file bufserver.c, line 28.
+(gdb) n
+21          setbuf(stdout, NULL);
+(gdb) continue
+Continuing.
+bind: Address already in use
+[Inferior 1 (process 5220) exited with code 01]
+(gdb) continue
+The program is not being run.
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) n[Kbrea[K[K[K
+Note: breakpoints 1 and 2 also set at pc 0x555555554d32.
+Breakpoint 4 at 0x555555554d32: file bufserver.c, line 18.
+(gdb) 
+Note: breakpoints 1, 2 and 4 also set at pc 0x555555554d32.
+Breakpoint 5 at 0x555555554d32: file bufserver.c, line 18.
+(gdb) n
+21          setbuf(stdout, NULL);
+(gdb) n
+23          struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) n
+24          int listenfd = set_up_server_socket(self, 5);
+(gdb) n
+bind: Address already in use
+[Inferior 1 (process 5917) exited with code 01]
+(gdb) break 28
+Note: breakpoint 3 also set at pc 0x555555554d84.
+Breakpoint 6 at 0x555555554d84: file bufserver.c, line 28.
+(gdb) run
+Starting program: /h/u10/c9/00/handeche/handeche/lab10/bufserver 
+
+Breakpoint 1, main () at bufserver.c:18
+18      int main() {
+(gdb) n
+21          setbuf(stdout, NULL);
+(gdb) n
+23          struct sockaddr_in *self = init_server_addr(PORT);
+(gdb) n
+24          int listenfd = set_up_server_socket(self, 5);
+(gdb) n
+bind: Address already in use
+[Inferior 1 (process 6531) exited with code 01]
+(gdb) quit
+]0;handeche@wolf:/h/u10/c9/00/handeche/handeche/lab10wolf:~/handeche/lab10$ exit
+exit
+
+Script done on 2021-03-25 03:04:52-0400
